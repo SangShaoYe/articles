@@ -1,0 +1,40 @@
+app:
+  version: 10
+server:
+  port: 2222
+#  maxHttpHeaderSize: 100000
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.253/xh_shop?characterEncoding=UTF-8
+    username: root
+    password: 111111
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    druid:
+      web-stat-filter.enabled: false
+      stat-view-servlet.enabled: false
+# 数据库表明严格对应注解
+  jpa:
+    hibernate.naming.physical-strategy: com.config.TableNameUpperCase
+    properties.hibernate.hbm2ddl.auto: update
+    show-sql: true
+
+####### http #######
+  http:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb
